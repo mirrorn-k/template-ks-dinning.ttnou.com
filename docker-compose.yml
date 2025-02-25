@@ -1,0 +1,14 @@
+version: "3.8"
+services:
+  app:
+    build: .
+    ports:
+      - "${APP_PORT}:3000"
+    environment:
+      - NODE_ENV=${NODE_ENV}
+    volumes:
+      - ./next-app:/next-app
+    env_file:
+      - .env
+    command: >
+      sh -c "if [ \"$NODE_ENV\" = \"production\" ]; then npm run migrate && npm run start; else npm run dev; fi"
