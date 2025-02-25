@@ -3,7 +3,7 @@ import BaseThemeProvider from '@themes/BaseTheme';
 import Header from '@components/Header';
 import Footer from '@components/Footer';
 import { Suspense } from 'react';
-import { tCatchcopy, tContentImg1, tLink } from '@ctypes/index';
+import { tContentImg1, tLink } from '@ctypes/index';
 import { tCompany, tContactFormItem } from '@ctypes/map';
 import { CommonDataProvider } from '@contexts/Common';
 import './globals.css';
@@ -26,7 +26,7 @@ export default function RootLayout({
             domain={domain}
             contactFormItems={contactFormItems}
             menus={pages}
-            catchcopy={catchcopy}
+            catchcopy={null}
             contents={contents}
             sns={snsLinks}
           >
@@ -67,7 +67,7 @@ const snsLinks: tLink[] = [
     name: 'Facebook',
     url: 'https://line.com',
     icon: {
-      url: 'ttnou/tmp/logo_facebook_white.png',
+      url: '/ttnou/tmp/logo_facebook_white.png',
       file: 'logo_facebook_white.png',
       name: 'facebook',
       caption: 'facebook',
@@ -187,16 +187,3 @@ export const contactFormItems: tContactFormItem[] = [
     row: 4,
   },
 ];
-
-export const catchcopy: tCatchcopy = {
-  title: 'addition onemeter',
-  description: '必要と去れるものを追加し、繋げる',
-  image: {
-    url: '/tmp/catchcopy.svg',
-    name: 'addition',
-    caption: '',
-    file: 'addition.jpg',
-    uuid: 'addition',
-  },
-  tags: ['追加する', '手の届く', '繋げる'],
-};
