@@ -1,9 +1,9 @@
-import ResponsiveBox, { CenteredBox, FlexColumnBox } from '@/atoms/Box'
-import { Box, Grid2 as Grid, Typography } from '@mui/material'
-import React from 'react'
-import { tPageTitle } from '@ctypes/index'
-import { MediaImages } from '@/atoms/Imgae'
-import Hashtags from '@/components/Hashtags'
+import ResponsiveBox, { CenteredBox, FlexColumnBox } from '@atoms/Box';
+import { Box, Grid2 as Grid, Typography } from '@mui/material';
+import React from 'react';
+import { tPageTitle } from '@ctypes/index';
+import { MediaImages } from '@atoms/Image';
+import Hashtags from '@/components/Hashtags';
 //import { useTheme } from "@mui/material/styles";
 
 const Main = (props: tPageTitle) => {
@@ -55,7 +55,7 @@ const Main = (props: tPageTitle) => {
         </Box>
       </FlexColumnBox>
     </ResponsiveBox>
-  )
-}
+  );
+};
 
-export default Main
+export default Main;

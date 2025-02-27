@@ -7,9 +7,9 @@ import { useTheme } from '@mui/material/styles';
 import { SmallTextField } from '@atoms/TextField';
 import { tValue } from '@ctypes/index';
 import * as atomBtn from '@atoms/Button';
-import { CustomImage } from '@atoms/Imgae';
+import { CustomImage } from '@atoms/Image';
 import { useSearchParams } from 'next/navigation';
-import { FlexBox } from '@/atoms/Box';
+import { FlexBox } from '@atoms/Box';
 import { Typography } from '@mui/material';
 
 /**

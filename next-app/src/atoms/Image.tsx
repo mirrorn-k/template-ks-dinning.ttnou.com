@@ -46,9 +46,9 @@ export const CustomImage = ({
           alt={alt}
           width={width}
           height={height}
-          fill={fill}
           priority={priority}
           style={{
+            objectFit: 'contain', // アスペクト比を維持して親要素内に収める
             width: '100%', // 親要素の幅に応じてスケーリング
             height: 'auto', // アスペクト比を維持
             maxHeight: '100%', // 親要素の高さに応じてスケーリング
@@ -57,6 +57,35 @@ export const CustomImage = ({
         />
       )}
     </CenteredBox>
+  );
+};
+
+interface CustomImageProps {
+  src: string;
+  alt: string;
+  className?: string;
+  priority?: boolean;
+  styles?: React.CSSProperties;
+}
+export const Contain = ({
+  src,
+  alt,
+  className = '',
+  priority = false,
+  styles = {},
+}: CustomImageProps) => {
+  return (
+    <Image
+      src={src}
+      alt={alt}
+      fill={true}
+      className={className}
+      priority={priority}
+      style={{
+        objectFit: 'contain',
+        ...styles,
+      }}
+    />
   );
 };
 
@@ -83,6 +112,8 @@ interface MediaImageProps {
   fill?: boolean;
   className?: string;
   priority?: boolean;
+  containerStyle?: React.CSSProperties;
+  imageStyle?: React.CSSProperties;
 }
 
 export const MediaImage = ({
@@ -92,6 +123,8 @@ export const MediaImage = ({
   fill = false,
   className = '',
   priority = false,
+  containerStyle = {},
+  imageStyle = {},
 }: MediaImageProps) => {
   if (!fill && !width) {
     width = 1;
@@ -113,6 +146,7 @@ export const MediaImage = ({
         maxWidth: '100%',
         maxHeight: '100%',
         overflow: 'hidden',
+        ...containerStyle,
       }}
     >
       {fill ? (
@@ -123,6 +157,7 @@ export const MediaImage = ({
           priority={priority}
           style={{
             objectFit: 'cover', // 親要素全体を埋める（必要に応じて `contain` に変更）
+            ...imageStyle,
           }}
         />
       ) : (
@@ -136,6 +171,7 @@ export const MediaImage = ({
           style={{
             width: '100%', // 親要素の幅に応じてスケーリング
             height: 'auto', // アスペクト比を維持
+            ...imageStyle,
           }}
         />
       )}
@@ -201,6 +237,7 @@ export const MediaImages: React.FC<MediaImagesProps> = ({
   const { selectView } = useContext(CommonDataContext);
   return (
     <CenteredBox
+      className={`ttnoumap-media-container`}
       sx={{
         position: 'relative',
         width: width || '100%',
@@ -217,15 +254,11 @@ export const MediaImages: React.FC<MediaImagesProps> = ({
           className={`${selectView !== index ? 'hidden' : ''}`}
           sx={{
             position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
             width: width || '100%',
             height: height || '100%',
             display: 'flex', // 画像を中央揃え
             justifyContent: 'center',
             alignItems: 'center',
-            ...imageStyle,
           }}
         >
           <Image
@@ -234,6 +267,7 @@ export const MediaImages: React.FC<MediaImagesProps> = ({
             fill
             style={{
               objectFit: 'contain', // アスペクト比を維持して親要素内に収める
+              ...imageStyle,
             }}
             priority={priority}
           />

@@ -1,13 +1,13 @@
-import ResponsiveBox, { FlexColumnBox } from '@atoms/Box'
-import { MediaImages } from '@atoms/Imgae'
-import { Typography } from '@mui/material'
-import { tSubContent } from '@ctypes/index'
-import { useTheme } from '@mui/material'
+import ResponsiveBox, { FlexColumnBox } from '@atoms/Box';
+import { MediaImages } from '@atoms/Image';
+import { Typography } from '@mui/material';
+import { tSubContent } from '@ctypes/index';
+import { useTheme } from '@mui/material';
 
 const SubContent = ({ content }: { content: tSubContent }) => {
-  const theme = useTheme()
+  const theme = useTheme();
 
-  if (!content) return null
+  if (!content) return null;
 
   return (
     <ResponsiveBox maxWidth="lg">
@@ -22,7 +22,7 @@ const SubContent = ({ content }: { content: tSubContent }) => {
         </Typography>
       </FlexColumnBox>
     </ResponsiveBox>
-  )
-}
+  );
+};
 
-export default SubContent
+export default SubContent;

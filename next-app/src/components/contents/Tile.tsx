@@ -1,9 +1,9 @@
-import React from "react";
-import { Grid2 as Grid, Box, Typography } from "@mui/material";
-import { SxProps } from "@mui/system";
-import { MediaImages } from "@/atoms/Imgae";
-import { tTile } from "@/types";
-import { tGridSize } from "@/types";
+import React from 'react';
+import { Grid2 as Grid, Box, Typography } from '@mui/material';
+import { SxProps } from '@mui/system';
+import { MediaImages } from '@atoms/Image';
+import { tTile } from '@/types';
+import { tGridSize } from '@/types';
 
 interface MainProps {
   items: tTile[];
@@ -24,16 +24,16 @@ const Main = ({
             <Box
               className="image"
               height={{ xs: 300, sm: 250, md: 280, lg: 350, xl: 380 }}
-              alignItems={"center"}
-              margin={"auto"}
+              alignItems={'center'}
+              margin={'auto'}
             >
               <MediaImages
                 medias={[item.img1, item.img2 || item.img1]}
                 priority
               />
             </Box>
-            <Typography variant="h4" component={"p"} className="caption">
-              {item.caption || ""}
+            <Typography variant="h4" component={'p'} className="caption">
+              {item.caption || ''}
             </Typography>
           </Grid>
         );

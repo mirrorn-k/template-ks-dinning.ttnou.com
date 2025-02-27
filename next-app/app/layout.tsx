@@ -6,7 +6,7 @@ import { Suspense } from 'react';
 import { tContentImg1, tLink } from '@ctypes/index';
 import { tCompany, tContactFormItem, tMedia } from '@ctypes/map';
 import { CommonDataProvider } from '@contexts/Common';
-import { Box, Grid2 as Grid, Typography } from '@mui/material';
+import { Box, Grid2 as Grid } from '@mui/material';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -20,22 +20,24 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="jp">
-      <Suspense fallback={<div>Loading...</div>}>
-        <CommonDataProvider
-          domain={domain}
-          imgTenpo={imgTenpo}
-          contactFormItems={contactFormItems}
-          menus={pages}
-          catchcopy={null}
-          contents={contents}
-          sns={snsLinks}
-        >
-          <BaseThemeProvider>
-            <Body>{children}</Body>
-          </BaseThemeProvider>
-        </CommonDataProvider>
-      </Suspense>
+    <html lang="ja">
+      <body>
+        <Suspense fallback={<div>Loading...</div>}>
+          <CommonDataProvider
+            domain={domain}
+            imgTenpo={imgTenpo}
+            contactFormItems={contactFormItems}
+            menus={pages}
+            catchcopy={null}
+            contents={contents}
+            sns={snsLinks}
+          >
+            <BaseThemeProvider>
+              <Body>{children}</Body>
+            </BaseThemeProvider>
+          </CommonDataProvider>
+        </Suspense>
+      </body>
     </html>
   );
 }
@@ -46,7 +48,6 @@ const Body = ({ children }: { children: React.ReactNode }) => {
       container
       spacing={0}
       sx={{ height: '100vh' }}
-      component="body"
       overflow={{ xs: 'auto', md: 'hidden' }}
     >
       {/* === PC: 3列 (Header / Main / Footer) === */}
@@ -68,23 +69,21 @@ const Body = ({ children }: { children: React.ReactNode }) => {
       >
         {/* Header (PCでは 3/12, タブレットでは 4/12, スマホでは横幅100%) */}
         <Grid
+          component={'header'}
           size={{ xs: 12, md: 4, lg: 4 }}
           sx={{
-            bgcolor: 'primary.main',
-            color: 'white',
-            p: 2,
+            //bgcolor: 'primary.main',
+            //color: 'white',
+            //p: 2,
             //minHeight: '100%',
             position: { xs: 'sticky', md: 'relative', lg: 'relative' }, // スマホでは固定
             top: 0,
             zIndex: 1000,
           }}
           overflow={{ xs: 'hidden', md: 'auto' }} // はみ出たらスクロール
-          height={{ xs: '80px', md: '100%', lg: '100%' }}
+          height={{ xs: '60px', md: '100%', lg: '100%' }}
         >
-          <Typography variant="h6">Header</Typography>
-          <Box sx={{ bgcolor: 'rgba(255,255,255,0.1)', p: 2 }}>
-            Scrollable Header
-          </Box>
+          <Header sns={snsLinks} />
         </Grid>
 
         {/* Main + Footer のラップ (タブレット・スマホでは1つのスクロール領域にする) */}
@@ -98,7 +97,7 @@ const Body = ({ children }: { children: React.ReactNode }) => {
             height: { xs: 'unset', md: '100%' },
             alignItems: { xs: 'center', md: 'center', xl: 'stretch' },
             width: { xs: '100%', md: 'unset' },
-            maxWidth: { xs: '680px', xl: '100%' },
+            maxWidth: { xs: '900px', xl: '100%' },
           }}
         >
           {/* Main */}
@@ -106,20 +105,14 @@ const Body = ({ children }: { children: React.ReactNode }) => {
             size={{ xs: 12, md: 12, xl: 6 }}
             sx={{
               width: '100%',
-              maxWidth: '680px',
-              bgcolor: 'secondary.main',
-              color: 'white',
-              p: 2,
+              maxWidth: '900px',
+              //p: 2,
               //minHeight: '100%',
               overflowY: { xs: 'unset', xl: 'auto' }, // PCでは各列スクロール, タブレット・スマホではまとめてスクロール
             }}
+            component="main"
           >
-            <Typography variant="h6">Main Content</Typography>
-            <Box
-              sx={{ height: '150vh', bgcolor: 'rgba(255,255,255,0.1)', p: 2 }}
-            >
-              Scrollable Content
-            </Box>
+            {children}
           </Grid>
 
           {/* Footer */}
@@ -132,12 +125,7 @@ const Body = ({ children }: { children: React.ReactNode }) => {
               overflowY: { xs: 'unset', xl: 'auto' }, // PCでは各列スクロール, タブレット・スマホではまとめてスクロール
             }}
           >
-            <Typography variant="h6">Footer</Typography>
-            <Box
-              sx={{ height: '150vh', bgcolor: 'rgba(255,255,255,0.1)', p: 2 }}
-            >
-              Scrollable Footer
-            </Box>
+            <Footer companyInfo={domain} imgTenpo={imgTenpo} />
           </Grid>
         </Box>
       </Grid>

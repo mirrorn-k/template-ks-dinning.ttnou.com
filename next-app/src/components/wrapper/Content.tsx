@@ -1,6 +1,6 @@
-import { Typography } from "@mui/material";
-import ResponsiveBox from "@/atoms/Box";
-import { grey } from "@mui/material/colors";
+import { Typography } from '@mui/material';
+import ResponsiveBox from '@atoms/Box';
+import { grey } from '@mui/material/colors';
 
 const ContentWarpper = ({
   title,
@@ -16,12 +16,12 @@ const ContentWarpper = ({
         component="h3"
         className="font-text"
         sx={{
-          textAlign: "center",
-          width: "100%",
+          textAlign: 'center',
+          width: '100%',
           backgroundColor: grey[900],
           color: grey[50],
           padding: 2,
-          fontWeight: "bold",
+          fontWeight: 'bold',
         }}
       >
         {title}

@@ -7,7 +7,7 @@ import { useState } from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Typography } from '@mui/material';
 import { LinkBox } from '@atoms/Link';
-import { FlexColumnBox, FlexBox } from '@/atoms/Box';
+import { FlexColumnBox, FlexBox } from '@atoms/Box';
 import { useTheme } from '@mui/material/styles';
 import * as ImgLink from '@components/button/ImgLink';
 import ViewChangeBtn from '@components/button/ViewChangeBtn';

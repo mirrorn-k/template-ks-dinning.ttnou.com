@@ -1,13 +1,13 @@
-'use client'
+'use client';
 import {
   createTheme,
   ThemeProvider,
   responsiveFontSizes,
-} from '@mui/material/styles'
-import { CssBaseline } from '@mui/material'
-import '@fontsource/noto-serif-jp'
-import '@fontsource/noto-sans-jp'
-import { grey, lightBlue } from '@mui/material/colors'
+} from '@mui/material/styles';
+import { CssBaseline } from '@mui/material';
+import '@fontsource/noto-serif-jp';
+import '@fontsource/noto-sans-jp';
+import { grey, lightBlue } from '@mui/material/colors';
 
 // テーマ作成
 const theme1 = createTheme({
@@ -55,14 +55,14 @@ const theme1 = createTheme({
     body1: {
       fontFamily: `'Noto Serif JP', sans-serif`,
       textAlign: 'left',
-      fontWeight: '600',
+      fontWeight: '300',
     },
     body2: {
       fontFamily: `'Noto Serif JP', sans-serif`,
-      fontWeight: '400',
+      fontWeight: '200',
     },
   },
-})
+});
 
 const theme2 = createTheme({
   ...theme1,
@@ -70,7 +70,7 @@ const theme2 = createTheme({
     MuiCssBaseline: {
       styleOverrides: {
         main: {
-          marginTop: theme1.spacing(8),
+          //marginTop: theme1.spacing(8),
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
@@ -138,12 +138,12 @@ const theme2 = createTheme({
       },
     },
   },
-})
+});
 
-export const baseTheme = responsiveFontSizes(theme2)
+export const baseTheme = responsiveFontSizes(theme2);
 
 interface ThemeProps {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 const BaseThemeProvider: React.FC<ThemeProps> = ({ children }) => {
@@ -152,7 +152,7 @@ const BaseThemeProvider: React.FC<ThemeProps> = ({ children }) => {
       <CssBaseline />
       {children}
     </ThemeProvider>
-  )
-}
+  );
+};
 
-export default BaseThemeProvider
+export default BaseThemeProvider;

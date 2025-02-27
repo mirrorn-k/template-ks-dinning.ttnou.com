@@ -4,7 +4,7 @@ import ResponsiveBox, { FlexColumnBox } from '@atoms/Box';
 import { Typography, Box } from '@mui/material';
 import FooterThemeProvider from '@themes/FooterTheme';
 import { FlexBox } from '@atoms/Box';
-import * as Image from '@atoms/Imgae';
+import * as Image from '@atoms/Image';
 import { tCompany, tMedia } from '@/types/map';
 import * as Link from '@atoms/Link';
 

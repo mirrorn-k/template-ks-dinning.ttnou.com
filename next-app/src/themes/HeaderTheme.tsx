@@ -16,12 +16,16 @@ let theme = createTheme(
       MuiAppBar: {
         styleOverrides: {
           root: {
+            /*
             posission: 'sticky',
             top: 0,
             left: 0,
+            */
             backgroundColor: baseTheme.palette.secondary.main, // デフォルトの背景色
             color: baseTheme.palette.secondary.contrastText, // デフォルトの文字色
             boxShadow: 'none',
+            height: 'inherit',
+            //padding: '40px 15px 15px 15px',
           },
         },
       },

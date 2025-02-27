@@ -1,11 +1,11 @@
-import { FlexColumnBox } from '@/atoms/Box'
-import { tItem } from '@/types'
-import { Typography, Grid2 as Grid } from '@mui/material'
-import { MediaImages } from '@/atoms/Imgae'
-import { grey } from '@mui/material/colors'
+import { FlexColumnBox } from '@atoms/Box';
+import { tItem } from '@/types';
+import { Typography, Grid2 as Grid } from '@mui/material';
+import { MediaImages } from '@atoms/Image';
+import { grey } from '@mui/material/colors';
 
 interface MainProps {
-  list: tItem[]
+  list: tItem[];
 }
 const Main = (props: MainProps) => {
   return (
@@ -45,9 +45,9 @@ const Main = (props: MainProps) => {
               </Grid>
             )}
           </Grid>
-        )
+        );
       })}
     </FlexColumnBox>
-  )
-}
-export default Main
+  );
+};
+export default Main;

@@ -1,18 +1,18 @@
-import { FlexColumnBox } from '@/atoms/Box'
-import * as tAbility from '@ctypes/ability'
-import { MediaImages } from '@/atoms/Imgae'
-import { Typography } from '@mui/material'
-import ResponsiveBox from '@/atoms/Box'
-import { tGridSize } from '@ctypes/index'
+import { FlexColumnBox } from '@atoms/Box';
+import * as tAbility from '@ctypes/ability';
+import { MediaImages } from '@atoms/Image';
+import { Typography } from '@mui/material';
+import ResponsiveBox from '@atoms/Box';
+import { tGridSize } from '@ctypes/index';
 
 const Main = ({
   item,
   width,
   height,
 }: {
-  item: tAbility.tAbilityContent
-  width?: tGridSize | number
-  height?: tGridSize | number
+  item: tAbility.tAbilityContent;
+  width?: tGridSize | number;
+  height?: tGridSize | number;
 }) => {
   return (
     <FlexColumnBox gapSize={2} alignItems={'center'}>
@@ -31,7 +31,7 @@ const Main = ({
         />
       </ResponsiveBox>
     </FlexColumnBox>
-  )
-}
+  );
+};
 
-export default Main
+export default Main;

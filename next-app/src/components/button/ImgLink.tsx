@@ -1,4 +1,4 @@
-import * as Image from '@atoms/Imgae';
+import * as Image from '@atoms/Image';
 import Link from 'next/link';
 import { CommonDataContext } from '@contexts/Common';
 import { useContext } from 'react';

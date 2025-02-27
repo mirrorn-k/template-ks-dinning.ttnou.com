@@ -4,9 +4,9 @@ import Toolbar from '@mui/material/Toolbar';
 import Box from '@mui/material/Box';
 import HeaderThemeProvider from '@themes/HeaderTheme';
 import { LinkBox } from '@atoms/Link';
-import * as Image from '@atoms/Imgae';
+import * as Image from '@atoms/Image';
 import MenuBtn from '@components/modal/Menu';
-import { FlexBox } from '@/atoms/Box';
+import { FlexBox } from '@atoms/Box';
 import { tLink } from '@ctypes/index';
 
 interface HeaderProps {
@@ -18,7 +18,11 @@ const HeaderNavigation = ({ sns }: HeaderProps) => {
 
   return (
     <HeaderThemeProvider>
-      <AppBar className="appbar">
+      <AppBar
+        className="appbar"
+        component="div"
+        sx={{ position: { xs: 'fixed', md: 'sticky' } }}
+      >
         <Toolbar>
           {/* モバイルナビゲーション */}
           <Box
@@ -40,8 +44,8 @@ const HeaderNavigation = ({ sns }: HeaderProps) => {
                     <Image.CustomImage
                       src={sns.icon.url}
                       alt={sns.name}
-                      width={40}
-                      height={40}
+                      width={25}
+                      height={25}
                     />
                   )}
                 </LinkBox>

@@ -2,7 +2,7 @@
 import { useContext, useEffect } from 'react';
 import { CommonDataContext } from '@contexts/Common';
 import { CircularButton } from '@atoms/Button';
-import { CustomImage } from '@atoms/Imgae';
+import { CustomImage } from '@atoms/Image';
 import { useSearchParams } from 'next/navigation';
 
 const Main = () => {

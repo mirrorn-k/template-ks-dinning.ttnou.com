@@ -1,11 +1,11 @@
-import React from "react";
-import { Grid2 as Grid, Typography, Box } from "@mui/material";
-import { MediaImage } from "@/atoms/Imgae";
-import { ContentTitle } from "@/atoms/Typography";
-import { tHighlightContent } from "@/types";
-import { ArrowLink } from "@/atoms/Link";
-import { FlexColumnBox } from "@/atoms/Box";
-import { useTheme } from "@mui/material";
+import React from 'react';
+import { Grid2 as Grid, Typography, Box } from '@mui/material';
+import { MediaImage } from '@atoms/Image';
+import { ContentTitle } from '@atoms/Typography';
+import { tHighlightContent } from '@/types';
+import { ArrowLink } from '@atoms/Link';
+import { FlexColumnBox } from '@atoms/Box';
+import { useTheme } from '@mui/material';
 
 interface MainProps {
   contents: tHighlightContent[];
@@ -15,7 +15,7 @@ const Main = (props: MainProps) => {
   const theme = useTheme();
   return (
     <FlexColumnBox gapSize={4}>
-      <ContentTitle variant="body1" component={"h3"}>
+      <ContentTitle variant="body1" component={'h3'}>
         オリジナルサービス
       </ContentTitle>
 
@@ -26,16 +26,16 @@ const Main = (props: MainProps) => {
               <FlexColumnBox
                 sx={{
                   p: { xs: theme.spacing(3), md: theme.spacing(8) },
-                  width: "100%",
-                  height: "100%",
+                  width: '100%',
+                  height: '100%',
                 }}
                 gapSize={4}
-                className={"color-secondary thin"}
+                className={'color-secondary thin'}
               >
                 <Typography
                   variant="h4"
                   component="h2"
-                  className={"textAlignCenter"}
+                  className={'textAlignCenter'}
                 >
                   {content.title}
                 </Typography>
@@ -51,8 +51,8 @@ const Main = (props: MainProps) => {
               <Box
                 className="color-secondary"
                 sx={{
-                  width: "100%",
-                  height: "100%",
+                  width: '100%',
+                  height: '100%',
                 }}
               >
                 <MediaImage
