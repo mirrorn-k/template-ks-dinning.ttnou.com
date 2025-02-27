@@ -9,13 +9,13 @@ import { Typography } from '@mui/material';
 import { LinkBox } from '@atoms/Link';
 import { FlexColumnBox, FlexBox } from '@/atoms/Box';
 import { useTheme } from '@mui/material/styles';
-import * as SnsBtn from '@components/button/ImgLink';
+import * as ImgLink from '@components/button/ImgLink';
 import ViewChangeBtn from '@components/button/ViewChangeBtn';
 import ContactModalBtn from '@components/modal/Contact';
 
 const Main = () => {
   const theme = useTheme();
-  const { menus } = useContext(CommonDataContext);
+  const { menus, sns } = useContext(CommonDataContext);
 
   const [open, setOpen] = useState(false);
 
@@ -76,7 +76,15 @@ const Main = () => {
               className={'SNS'}
               sx={{ margin: 'auto', height: 50, justifyContent: 'center' }}
             >
-              <SnsBtn.Instagram />
+              {sns.map((sns, index) => (
+                <LinkBox
+                  key={`sns-${index}-${sns.name}`}
+                  href={sns.url}
+                  aria-label={sns.name}
+                >
+                  {sns.icon && <ImgLink.Icon link={sns} />}
+                </LinkBox>
+              ))}
             </FlexBox>
           </FlexColumnBox>
 

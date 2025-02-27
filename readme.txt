@@ -1,36 +1,26 @@
-環境構築
-
+# 1. プロジェクトディレクトリを作成
 mkdir next-app
 cd next-app
+
+# 2. Next.js プロジェクトを作成（TypeScript）
 npx create-next-app@latest app --typescript
 
+# 3. Next.js を明示的にインストール
+cd app
+npm install next
+
+# 4. MUI (Material-UI) のインストール
 npm install @mui/material @emotion/react @emotion/styled
 
+# 5. MUI Icons のインストール
 npm install @mui/icons-material
 
+# 6. ESLint & Prettier のインストール
 npm install --save-dev eslint prettier eslint-config-prettier eslint-plugin-prettier
 
-#一括で ESLint & Prettier の設定ファイルを作成するコマンド
-mkdir -p .vscode && echo '{
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.formatOnSave": true,
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
-  }
-}' > .vscode/settings.json
+# 7. 一括で ESLint & Prettier の設定ファイルを移動
+mv ../conf/* ./
 
-echo '{
-  "extends": ["next/core-web-vitals", "eslint:recommended", "plugin:prettier/recommended"],
-  "plugins": ["prettier"],
-  "rules": {
-    "prettier/prettier": "error",
-    "react/react-in-jsx-scope": "off"
-  }
-}' > .eslintrc.json
+# 8. 共通パーツをセット
+mv ../src ./
 
-echo '{
-  "singleQuote": true,
-  "semi": false,
-  "trailingComma": "es5",
-  "tabWidth": 2
-}' > .prettierrc

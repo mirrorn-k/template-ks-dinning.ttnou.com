@@ -1,7 +1,6 @@
 import React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import HeaderThemeProvider from '@themes/HeaderTheme';
 import { LinkBox } from '@atoms/Link';
@@ -12,9 +11,8 @@ import { tLink } from '@ctypes/index';
 
 interface HeaderProps {
   sns: tLink[];
-  menus: tLink[];
 }
-const HeaderNavigation = ({ sns, menus }: HeaderProps) => {
+const HeaderNavigation = ({ sns }: HeaderProps) => {
   // snsからiconがnullのものを除外
   sns = sns.filter((sns) => sns.icon !== null);
 
@@ -22,25 +20,6 @@ const HeaderNavigation = ({ sns, menus }: HeaderProps) => {
     <HeaderThemeProvider>
       <AppBar className="appbar">
         <Toolbar>
-          {/* PC ナビゲーション */}
-          <Box
-            sx={{
-              display: { xs: 'none', md: 'flex' }, // PC のみ表示
-              marginLeft: 'auto',
-              gap: 6, // リンク間のスペース
-            }}
-          >
-            {menus.map((menu, index) => (
-              <LinkBox
-                key={`head-navi-${index}-${menu.name} `}
-                href={menu.url}
-                aria-label={menu.name}
-              >
-                <MenuLabel menu={menu} />
-              </LinkBox>
-            ))}
-          </Box>
-
           {/* モバイルナビゲーション */}
           <Box
             sx={{ display: { xs: 'flex', md: 'none' }, marginRight: 'auto' }}
@@ -72,17 +51,6 @@ const HeaderNavigation = ({ sns, menus }: HeaderProps) => {
         </Toolbar>
       </AppBar>
     </HeaderThemeProvider>
-  );
-};
-
-// メニューラベルのカスタムボックス
-const MenuLabel = ({ menu }: { menu: tLink }) => {
-  return (
-    <Box>
-      <Typography variant="h2" className={'font-tittle'}>
-        {menu.name}
-      </Typography>
-    </Box>
   );
 };
 

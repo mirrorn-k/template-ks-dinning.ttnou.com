@@ -5,6 +5,8 @@ import { Typography, Box } from '@mui/material';
 import ArrowIcon from '@atoms/svg/ArrowIcon';
 import { useTheme } from '@mui/material';
 import styled from '@mui/system/styled';
+import { FlexBox } from './Box';
+import { OpenInNew } from '@mui/icons-material';
 
 interface MainProps {
   href: string;
@@ -55,3 +57,14 @@ export const LinkBox = styled(Link)(({ theme }) => ({
   flexDirection: 'column',
   textAlign: 'center',
 }));
+
+export const OutLink = ({ href, label }: { href: string; label: string }) => {
+  return (
+    <FlexBox gapSize={0.2}>
+      <MuiLink href={href}>
+        <Typography variant="body1">{label}</Typography>
+        <OpenInNew />
+      </MuiLink>
+    </FlexBox>
+  );
+};

@@ -1,20 +1,18 @@
 'use client';
-import React, { useContext } from 'react';
+import React from 'react';
 import ResponsiveBox, { FlexColumnBox } from '@atoms/Box';
 import { Typography, Box } from '@mui/material';
 import FooterThemeProvider from '@themes/FooterTheme';
-import Toolbar from '@mui/material/Toolbar';
-import { useTheme } from '@mui/material/styles';
 import { FlexBox } from '@atoms/Box';
-import { CommonDataContext } from '@contexts/Common';
 import * as Image from '@atoms/Imgae';
-import { LinkBox } from '@atoms/Link';
-import * as SnsBtn from '@components/button/ImgLink';
+import { tCompany, tMedia } from '@/types/map';
+import * as Link from '@atoms/Link';
 
-const Footer: React.FC = () => {
-  const theme = useTheme();
-  const { menus } = useContext(CommonDataContext);
-
+interface FooterProps {
+  companyInfo: tCompany;
+  imgTenpo: tMedia[];
+}
+const Footer = ({ companyInfo, imgTenpo }: FooterProps) => {
   return (
     <FooterThemeProvider>
       <Box
@@ -24,49 +22,49 @@ const Footer: React.FC = () => {
           display: 'flex',
           justifyContent: 'center',
           alignContent: 'center',
-          padding: theme.spacing(2),
-          marginTop: theme.spacing(6),
+          padding: 2,
+          marginTop: 6,
         }}
       >
         <ResponsiveBox maxWidth="lg">
           <FlexColumnBox>
-            <Toolbar
-              sx={{
-                justifyContent: 'center',
-              }}
+            <Typography
+              variant="h3"
+              component="h3"
+              sx={{ borderBottom: `3px solid black` }}
             >
-              {/* ロゴ */}
-              <Image.Logo />
-
-              {/* PC ナビゲーション */}
-              <Box
-                sx={{
-                  display: { xs: 'none', md: 'flex' }, // PC のみ表示
-                  marginLeft: 'auto',
-                  gap: theme.spacing(6), // リンク間のスペース
-                }}
-              >
-                {menus.map((menu, index) => (
-                  <LinkBox
-                    key={`head-navi-${index}-${menu.name}`}
-                    href={menu.url}
-                    aria-label={menu.name}
-                  >
-                    <Typography className={'font-tittle'}>
-                      {menu.name}
-                    </Typography>
-                  </LinkBox>
-                ))}
-              </Box>
-            </Toolbar>
-            <FlexBox
-              className={'SNS'}
-              sx={{ margin: 'auto', height: 50, justifyContent: 'center' }}
-            >
-              <SnsBtn.Instagram />
-            </FlexBox>
-            <FlexBox>
+              店舗情報
+            </Typography>
+            <Box>
               <Typography variant="h5" component="h5">
+                {companyInfo.organization_name}
+              </Typography>
+            </Box>
+            <FlexColumnBox gapSize={0.2}>
+              <Typography variant="body1" component="p">
+                {companyInfo.postal_code}
+              </Typography>
+              <Typography variant="body1" component="p">
+                {companyInfo.address}
+              </Typography>
+              <Typography variant="body1" component="p">
+                {companyInfo.address_other}
+              </Typography>
+              <Typography variant="body1" component="p">
+                {companyInfo.tell}
+              </Typography>
+            </FlexColumnBox>
+            <FlexBox gapSize={0.2}>
+              <Link.OutLink
+                href={companyInfo.google_map_link}
+                label={'Google map'}
+              />
+            </FlexBox>
+            <Box sx={{ justifyItems: 'center' }}>
+              <TenpoImg imgTenpo={imgTenpo} />
+            </Box>
+            <FlexBox>
+              <Typography className={`copyright`}>
                 Copyright©︎ addonem lcc. All Rights Reserved.
               </Typography>
             </FlexBox>
@@ -77,3 +75,21 @@ const Footer: React.FC = () => {
   );
 };
 export default Footer;
+
+const TenpoImg = ({ imgTenpo }: { imgTenpo: tMedia[] }) => {
+  const width = 200;
+  const height = 370;
+
+  switch (imgTenpo.length) {
+    case 0:
+      return null;
+    case 1:
+      return (
+        <Image.MediaImage media={imgTenpo[0]} width={width} height={height} />
+      );
+    default:
+      return (
+        <Image.MediaImages medias={imgTenpo} width={width} height={height} />
+      );
+  }
+};

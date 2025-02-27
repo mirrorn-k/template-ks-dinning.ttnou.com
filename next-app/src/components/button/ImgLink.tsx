@@ -4,7 +4,7 @@ import { CommonDataContext } from '@contexts/Common';
 import { useContext } from 'react';
 import { tLink } from '@ctypes/index';
 
-const Main = ({ link }: { link: tLink }) => {
+export const Icon = ({ link }: { link: tLink }) => {
   if (link.icon === null) return null;
   return (
     <Link href={link.url}>
@@ -17,7 +17,6 @@ const Main = ({ link }: { link: tLink }) => {
     </Link>
   );
 };
-export default Main;
 
 export const Instagram = () => {
   const { sns } = useContext(CommonDataContext);

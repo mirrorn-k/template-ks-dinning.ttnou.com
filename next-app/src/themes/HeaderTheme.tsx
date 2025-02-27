@@ -1,14 +1,13 @@
-'use client'
-import React from 'react'
-import { baseTheme } from '@themes/BaseTheme'
+'use client';
+import React from 'react';
+import { baseTheme } from '@themes/BaseTheme';
 import {
   createTheme,
   ThemeProvider,
   responsiveFontSizes,
-} from '@mui/material/styles'
-import { CssBaseline } from '@mui/material'
-import deepmerge from 'deepmerge'
-import { grey } from '@mui/material/colors'
+} from '@mui/material/styles';
+import { CssBaseline } from '@mui/material';
+import deepmerge from 'deepmerge';
 
 let theme = createTheme(
   deepmerge(baseTheme, {
@@ -20,8 +19,8 @@ let theme = createTheme(
             posission: 'sticky',
             top: 0,
             left: 0,
-            backgroundColor: 'rgba(255,255,255, 1)', // デフォルトの背景色
-            color: grey[900], // デフォルトの文字色
+            backgroundColor: baseTheme.palette.secondary.main, // デフォルトの背景色
+            color: baseTheme.palette.secondary.contrastText, // デフォルトの文字色
             boxShadow: 'none',
           },
         },
@@ -31,25 +30,25 @@ let theme = createTheme(
           root: {
             borderRadius: '50%',
             padding: baseTheme.spacing(1),
-            backgroundColor: 'black',
-            color: grey[50],
+            backgroundColor: 'inherit',
+            color: baseTheme.palette.secondary.contrastText,
             '&:hover': {
-              backgroundColor: 'gray',
+              backgroundColor: baseTheme.palette.secondary.light,
             },
             '& svg': {
-              color: 'white', // 子要素のアイコン色
+              color: baseTheme.palette.secondary.contrastText, // 子要素のアイコン色
             },
           },
         },
       },
     },
   })
-)
+);
 
-theme = responsiveFontSizes(theme)
+theme = responsiveFontSizes(theme);
 
 interface ThemeProps {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 const HeaderThemeProvider: React.FC<ThemeProps> = ({ children }) => {
@@ -58,7 +57,7 @@ const HeaderThemeProvider: React.FC<ThemeProps> = ({ children }) => {
       <CssBaseline />
       {children}
     </ThemeProvider>
-  )
-}
+  );
+};
 
-export default HeaderThemeProvider
+export default HeaderThemeProvider;

@@ -1,14 +1,14 @@
-'use client'
-import React from 'react'
-import { baseTheme } from '@themes/BaseTheme'
+'use client';
+import React from 'react';
+import { baseTheme } from '@themes/BaseTheme';
 import {
   createTheme,
   ThemeProvider,
   responsiveFontSizes,
-} from '@mui/material/styles'
-import { CssBaseline } from '@mui/material'
-import deepmerge from 'deepmerge'
-import { grey } from '@mui/material/colors'
+} from '@mui/material/styles';
+import { CssBaseline } from '@mui/material';
+import deepmerge from 'deepmerge';
+import { grey } from '@mui/material/colors';
 
 let theme = createTheme(
   deepmerge(baseTheme, {
@@ -22,12 +22,16 @@ let theme = createTheme(
       },
     },
     components: {
-      MuiToolbar: {
+      MuiCssBaseline: {
         styleOverrides: {
-          root: {
-            flexGrow: 1,
-            textAligin: 'left',
-            borderBottom: `1px solid ${'black'}`,
+          footer: {
+            backgroundColor: baseTheme.palette.secondary.main, // デフォルトの背景色
+            color: baseTheme.palette.secondary.contrastText, // デフォルトの文字色
+            padding: 2,
+            marginTop: 6,
+          },
+          '& .copyright': {
+            fontSize: '0.75rem !important',
           },
         },
       },
@@ -49,12 +53,12 @@ let theme = createTheme(
       },
     },
   })
-)
+);
 
-theme = responsiveFontSizes(theme)
+theme = responsiveFontSizes(theme);
 
 interface ThemeProps {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 const HeaderThemeProvider: React.FC<ThemeProps> = ({ children }) => {
@@ -63,7 +67,7 @@ const HeaderThemeProvider: React.FC<ThemeProps> = ({ children }) => {
       <CssBaseline />
       {children}
     </ThemeProvider>
-  )
-}
+  );
+};
 
-export default HeaderThemeProvider
+export default HeaderThemeProvider;

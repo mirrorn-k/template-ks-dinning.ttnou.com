@@ -18,8 +18,9 @@
         "name": "next"
       }
     ],
-    "baseUrl": ".",
+    "baseUrl": ".", // add
     "paths": {
+      // add
       "@/*": ["src/*"],
       "@contexts/*": ["src/contexts/*"],
       "@consts/*": ["src/consts/*"],

@@ -1,18 +1,19 @@
-# ベースイメージとしてNode.jsを使用
+# 1. ベースイメージ
 FROM node:20-alpine
 
-# 作業ディレクトリを設定
+# 2. 作業ディレクトリを設定
 WORKDIR /next-app
 
-# ソースコードをコンテナにコピー
-COPY ./next-app ./
-COPY .env ./
-
-# 依存関係をインストール
+# 3. `package.json` をコピーして `npm install`
+COPY ./next-app/package.json ./
+COPY ./next-app/package-lock.json ./
 RUN npm install
 
-# ポートを公開
-EXPOSE 3000
+# 4. 残りのソースコードをコピー
+COPY ./next-app ./
 
-# 起動コマンドを環境に応じて切り替え
-# CMD [ "sh", "-c", "if [ \"$NODE_ENV\" = \"production\" ]; then npm run start; else npm run dev; fi" ]
+# 5. Next.js をビルド
+RUN npm run build
+
+# 6. ポートを公開
+EXPOSE 3000

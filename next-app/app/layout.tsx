@@ -4,8 +4,9 @@ import Header from '@components/Header';
 import Footer from '@components/Footer';
 import { Suspense } from 'react';
 import { tContentImg1, tLink } from '@ctypes/index';
-import { tCompany, tContactFormItem } from '@ctypes/map';
+import { tCompany, tContactFormItem, tMedia } from '@ctypes/map';
 import { CommonDataProvider } from '@contexts/Common';
+import { Box, Grid2 as Grid, Typography } from '@mui/material';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -20,27 +21,129 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="jp">
-      <body>
-        <Suspense fallback={<div>Loading...</div>}>
-          <CommonDataProvider
-            domain={domain}
-            contactFormItems={contactFormItems}
-            menus={pages}
-            catchcopy={null}
-            contents={contents}
-            sns={snsLinks}
-          >
-            <BaseThemeProvider>
-              <Header sns={snsLinks} menus={menuLinks} />
-              <main>{children}</main>
-              <Footer />
-            </BaseThemeProvider>
-          </CommonDataProvider>
-        </Suspense>
-      </body>
+      <Suspense fallback={<div>Loading...</div>}>
+        <CommonDataProvider
+          domain={domain}
+          imgTenpo={imgTenpo}
+          contactFormItems={contactFormItems}
+          menus={pages}
+          catchcopy={null}
+          contents={contents}
+          sns={snsLinks}
+        >
+          <BaseThemeProvider>
+            <Body>{children}</Body>
+          </BaseThemeProvider>
+        </CommonDataProvider>
+      </Suspense>
     </html>
   );
 }
+
+const Body = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <Grid
+      container
+      spacing={0}
+      sx={{ height: '100vh' }}
+      component="body"
+      overflow={{ xs: 'auto', md: 'hidden' }}
+    >
+      {/* === PC: 3列 (Header / Main / Footer) === */}
+      {/* === タブレット: 2列 ([Header] / [Main + Footer]) === */}
+      {/* === スマホ: 1列 (Header 固定 + Main + Footer) === */}
+
+      <Grid
+        container
+        size={{ xs: 12 }}
+        sx={{
+          flexGrow: 1,
+          display: 'flex',
+          flexDirection: { xs: 'column', md: 'row', lg: 'row' },
+        }}
+        justifyContent={{ xs: 'center', md: 'space-evenly' }}
+        alignItems={{ xs: 'center', md: 'stretch', lg: 'stretch' }}
+        overflow={{ xs: 'auto', md: 'hidden' }}
+        height={{ xs: 'unset', md: '100vh', lg: '100vh' }}
+      >
+        {/* Header (PCでは 3/12, タブレットでは 4/12, スマホでは横幅100%) */}
+        <Grid
+          size={{ xs: 12, md: 4, lg: 4 }}
+          sx={{
+            bgcolor: 'primary.main',
+            color: 'white',
+            p: 2,
+            //minHeight: '100%',
+            position: { xs: 'sticky', md: 'relative', lg: 'relative' }, // スマホでは固定
+            top: 0,
+            zIndex: 1000,
+          }}
+          overflow={{ xs: 'hidden', md: 'auto' }} // はみ出たらスクロール
+          height={{ xs: '80px', md: '100%', lg: '100%' }}
+        >
+          <Typography variant="h6">Header</Typography>
+          <Box sx={{ bgcolor: 'rgba(255,255,255,0.1)', p: 2 }}>
+            Scrollable Header
+          </Box>
+        </Grid>
+
+        {/* Main + Footer のラップ (タブレット・スマホでは1つのスクロール領域にする) */}
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: { xs: 'column', md: 'column', xl: 'row' },
+            flexGrow: 1,
+            overflowY: { xs: 'unset', sm: 'auto', xl: 'hidden' }, // PCでは各列スクロール, タブレット・スマホではまとめてスクロール
+            marginTop: { xs: '0', md: 0, lg: 0 }, // スマホで Header がかぶらないように
+            height: { xs: 'unset', md: '100%' },
+            alignItems: { xs: 'center', md: 'center', xl: 'stretch' },
+            width: { xs: '100%', md: 'unset' },
+            maxWidth: { xs: '680px', xl: '100%' },
+          }}
+        >
+          {/* Main */}
+          <Grid
+            size={{ xs: 12, md: 12, xl: 6 }}
+            sx={{
+              width: '100%',
+              maxWidth: '680px',
+              bgcolor: 'secondary.main',
+              color: 'white',
+              p: 2,
+              //minHeight: '100%',
+              overflowY: { xs: 'unset', xl: 'auto' }, // PCでは各列スクロール, タブレット・スマホではまとめてスクロール
+            }}
+          >
+            <Typography variant="h6">Main Content</Typography>
+            <Box
+              sx={{ height: '150vh', bgcolor: 'rgba(255,255,255,0.1)', p: 2 }}
+            >
+              Scrollable Content
+            </Box>
+          </Grid>
+
+          {/* Footer */}
+          <Grid
+            size={{ xs: 12, md: 12, xl: 6 }}
+            sx={{
+              bgcolor: 'grey.800',
+              color: 'white',
+              p: 2,
+              overflowY: { xs: 'unset', xl: 'auto' }, // PCでは各列スクロール, タブレット・スマホではまとめてスクロール
+            }}
+          >
+            <Typography variant="h6">Footer</Typography>
+            <Box
+              sx={{ height: '150vh', bgcolor: 'rgba(255,255,255,0.1)', p: 2 }}
+            >
+              Scrollable Footer
+            </Box>
+          </Grid>
+        </Box>
+      </Grid>
+    </Grid>
+  );
+};
 
 // Contextで読み込む予定の仮データ
 const domain: tCompany = {
@@ -84,15 +187,6 @@ const snsLinks: tLink[] = [
       caption: 'Instagram',
       uuid: 'dhsalfjdlskajfld;',
     },
-  },
-];
-
-const menuLinks: tLink[] = [
-  { name: 'Line', url: 'https://line.com', icon: null },
-  {
-    name: 'Instagram',
-    url: 'https://www.instagram.com',
-    icon: null,
   },
 ];
 
@@ -185,5 +279,15 @@ export const contactFormItems: tContactFormItem[] = [
     required: true,
     placeholder: 'Your Message',
     row: 4,
+  },
+];
+
+const imgTenpo: tMedia[] = [
+  {
+    url: '/ttnou/tmp/image_tenpo.jpg',
+    file: 'image_tenpo.jpg',
+    name: 'image_tenpo',
+    caption: 'image_tenpo',
+    uuid: 'dhakhdwljj',
   },
 ];

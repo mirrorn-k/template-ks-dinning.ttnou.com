@@ -2,13 +2,14 @@
 import { createContext, useState, useEffect, ReactNode } from 'react';
 import { tCompany } from '@ctypes/map';
 import { tCatchcopy, tLink, tContentImg1 } from '@ctypes/index';
-import { tContactFormItem } from '@ctypes/map';
+import { tContactFormItem, tMedia } from '@ctypes/map';
 import { initCompanyInfo } from '@consts/default';
 
 interface CommonDataContextProps {
   flgChange: (no?: number) => void;
   selectView: number;
   companyInfo: tCompany;
+  imgTenpo: tMedia[];
   contactFormItems: tContactFormItem[];
   menus: tLink[];
   catchcopy: tCatchcopy | null;
@@ -21,6 +22,7 @@ const defaultValue: CommonDataContextProps = {
   flgChange: () => {},
   selectView: 0,
   companyInfo: initCompanyInfo,
+  imgTenpo: [],
   contactFormItems: [],
   menus: [],
   catchcopy: null,
@@ -35,6 +37,7 @@ export const CommonDataContext =
 
 interface CommonDataProviderProps {
   domain: tCompany;
+  imgTenpo: tMedia[];
   contactFormItems: CommonDataContextProps['contactFormItems'];
   menus: tLink[];
   catchcopy: tCatchcopy | null;
@@ -45,6 +48,11 @@ interface CommonDataProviderProps {
 export const CommonDataProvider = (props: CommonDataProviderProps) => {
   const [companyInfo, setCompanyInfo] =
     useState<CommonDataContextProps['companyInfo']>(initCompanyInfo);
+
+  const [imgTenpo, setImgTenpo] = useState<CommonDataContextProps['imgTenpo']>(
+    []
+  );
+
   const [contactFormItems, setContactFormItems] = useState<
     CommonDataContextProps['contactFormItems']
   >([]);
@@ -58,6 +66,10 @@ export const CommonDataProvider = (props: CommonDataProviderProps) => {
   useEffect(() => {
     setCompanyInfo(props.domain);
   }, [props.domain]);
+
+  useEffect(() => {
+    setImgTenpo(props.imgTenpo);
+  }, [props.imgTenpo]);
 
   useEffect(() => {
     setContactFormItems(props.contactFormItems);
@@ -104,6 +116,7 @@ export const CommonDataProvider = (props: CommonDataProviderProps) => {
         flgChange,
         selectView,
         companyInfo,
+        imgTenpo,
         contactFormItems,
         menus,
         catchcopy,

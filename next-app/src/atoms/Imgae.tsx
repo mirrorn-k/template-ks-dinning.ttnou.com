@@ -104,7 +104,17 @@ export const MediaImage = ({
     height = undefined;
   }
   return (
-    <CenteredBox className={`ttnoumap-media-container ${className}`}>
+    <CenteredBox
+      className={`ttnoumap-media-container ${className}`}
+      sx={{
+        position: 'relative',
+        width: width || '100%',
+        height: height || '100%',
+        maxWidth: '100%',
+        maxHeight: '100%',
+        overflow: 'hidden',
+      }}
+    >
       {fill ? (
         <Image
           src={media.url}
@@ -175,6 +185,11 @@ interface MediaImagesProps {
   imageStyle?: React.CSSProperties;
 }
 
+/**
+ * selectViewによる切り替え対応Imageコンポーネント
+ * @param param0
+ * @returns
+ */
 export const MediaImages: React.FC<MediaImagesProps> = ({
   medias,
   width,
