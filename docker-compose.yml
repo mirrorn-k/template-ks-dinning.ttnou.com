@@ -11,4 +11,4 @@ services:
     env_file:
       - .env
     command: >
-      sh -c "if [ \"$NODE_ENV\" = \"production\" ]; then npm run migrate && npm run start; else npm run dev; fi"
+      sh -c "if [ \"$NODE_ENV\" = \"production\" ]; then npm run start; else npm run dev; fi"
