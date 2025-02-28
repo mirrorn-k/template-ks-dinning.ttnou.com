@@ -21,6 +21,11 @@ let theme = createTheme(
         main: '#ff0080',
       },
     },
+    typography: {
+      body2: {
+        fontSize: '0.75rem',
+      },
+    },
     components: {
       MuiCssBaseline: {
         styleOverrides: {

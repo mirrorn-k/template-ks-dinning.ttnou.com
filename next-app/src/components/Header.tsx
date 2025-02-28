@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 import HeaderThemeProvider from '@themes/HeaderTheme';
 import { LinkBox } from '@atoms/Link';
 import * as Image from '@atoms/Image';
-import MenuBtn from '@components/modal/Menu';
+import MenuBtn, { MenuForm } from '@components/modal/Menu';
 import { FlexBox } from '@atoms/Box';
 import { tLink } from '@ctypes/index';
 
@@ -21,9 +21,17 @@ const HeaderNavigation = ({ sns }: HeaderProps) => {
       <AppBar
         className="appbar"
         component="div"
-        sx={{ position: { xs: 'fixed', md: 'sticky' } }}
+        sx={{ position: { xs: 'fixed', sm: 'sticky' } }}
       >
         <Toolbar>
+          {/* タブレット以上のサイドメニュー */}
+          <Box
+            width={'100%'}
+            sx={{ display: { xs: 'none', md: 'block' }, marginRight: 'auto' }}
+          >
+            <MenuForm />
+          </Box>
+
           {/* モバイルナビゲーション */}
           <Box
             sx={{ display: { xs: 'flex', md: 'none' }, marginRight: 'auto' }}
@@ -41,7 +49,7 @@ const HeaderNavigation = ({ sns }: HeaderProps) => {
                   aria-label={sns.name}
                 >
                   {sns.icon && (
-                    <Image.CustomImage
+                    <Image.Main
                       src={sns.icon.url}
                       alt={sns.name}
                       width={25}

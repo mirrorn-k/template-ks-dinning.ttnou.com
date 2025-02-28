@@ -7,7 +7,7 @@ import { useTheme } from '@mui/material/styles';
 import { SmallTextField } from '@atoms/TextField';
 import { tValue } from '@ctypes/index';
 import * as atomBtn from '@atoms/Button';
-import { CustomImage } from '@atoms/Image';
+import * as Image from '@atoms/Image';
 import { useSearchParams } from 'next/navigation';
 import { FlexBox } from '@atoms/Box';
 import { Typography } from '@mui/material';
@@ -54,7 +54,7 @@ export default function ContactModalBtn() {
         variant="contained"
         color={'primary'}
       >
-        <CustomImage
+        <Image.Main
           src="/img/icon/contact_icon.svg"
           alt="contact_icon"
           height={1080}

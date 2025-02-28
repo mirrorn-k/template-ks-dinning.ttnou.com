@@ -60,11 +60,11 @@ export const LinkBox = styled(Link)(({ theme }) => ({
 
 export const OutLink = ({ href, label }: { href: string; label: string }) => {
   return (
-    <FlexBox gapSize={0.2}>
-      <MuiLink href={href}>
+    <MuiLink href={href}>
+      <FlexBox gapSize={0.2}>
         <Typography variant="body1">{label}</Typography>
         <OpenInNew />
-      </MuiLink>
-    </FlexBox>
+      </FlexBox>
+    </MuiLink>
   );
 };

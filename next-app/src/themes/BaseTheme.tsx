@@ -29,6 +29,15 @@ const theme1 = createTheme({
       secondary: grey[100],
     },
   },
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 450,
+      md: 650,
+      lg: 1000,
+      xl: 1920,
+    },
+  },
   typography: {
     fontFamily: `'Noto Sans JP', sans-serif`,
     h1: {
@@ -84,6 +93,16 @@ const theme2 = createTheme({
           '&.hidden': {
             // 0.5秒かけて透明にする
             opacity: 0,
+          },
+        },
+        li: {
+          '&.marker-none': {
+            '::marker': {
+              color: 'transparent',
+            },
+          },
+          '&.list-style-none': {
+            listStyle: 'none',
           },
         },
       },

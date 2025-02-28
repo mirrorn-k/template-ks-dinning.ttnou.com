@@ -145,3 +145,9 @@ export type tContentImg1 = {
   label?: string | null;
   href?: string | null;
 };
+
+export type tSeat = {
+  uuid: string;
+  name: string;
+  image: tMedia;
+};

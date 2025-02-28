@@ -8,12 +8,7 @@ export const Icon = ({ link }: { link: tLink }) => {
   if (link.icon === null) return null;
   return (
     <Link href={link.url}>
-      <Image.CustomImage
-        src={link.icon.url}
-        alt={link.name}
-        width={40}
-        height={40}
-      />
+      <Image.Main src={link.icon.url} alt={link.name} width={40} height={40} />
     </Link>
   );
 };
@@ -25,12 +20,7 @@ export const Instagram = () => {
   if (!obj || !obj.icon) return null;
   return (
     <Link href={obj.url}>
-      <Image.CustomImage
-        src={obj.icon.url}
-        alt={obj.name}
-        width={40}
-        height={40}
-      />
+      <Image.Main src={obj.icon.url} alt={obj.name} width={40} height={40} />
     </Link>
   );
 };

@@ -2,7 +2,7 @@
 import { useContext, useEffect } from 'react';
 import { CommonDataContext } from '@contexts/Common';
 import { CircularButton } from '@atoms/Button';
-import { CustomImage } from '@atoms/Image';
+import * as Image from '@atoms/Image';
 import { useSearchParams } from 'next/navigation';
 
 const Main = () => {
@@ -23,13 +23,13 @@ const Main = () => {
       variant="contained"
       color={'secondary'}
     >
-      <CustomImage
+      <Image.Main
         src="/img/icon/swich_icon.svg"
         alt="swich_icon"
         height={1080}
         width={1920}
         priority
-        styles={{
+        style={{
           transform: `rotate(${selectView ? 180 : 0}deg)`,
           transition: 'transform 0.5s ease-in-out',
         }}

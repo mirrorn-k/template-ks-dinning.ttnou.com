@@ -1,62 +1,17 @@
 import Image from 'next/image';
 import { tMedia } from '@ctypes/map';
 import { CenteredBox } from '@atoms/Box';
-import { Box } from '@mui/material';
 import { useContext } from 'react';
 import { CommonDataContext } from '@contexts/Common';
 import Link from 'next/link';
-import { tGridSize } from '@ctypes/index';
 
-interface CustomImageProps {
-  src: string;
-  alt: string;
-  width?: number;
-  height?: number;
-  fill?: boolean;
-  className?: string;
-  priority?: boolean;
-  styles?: React.CSSProperties;
-}
-export const CustomImage = ({
-  src,
-  alt,
-  width,
-  height,
-  fill = false,
-  className = '',
-  priority = false,
-  styles = {},
-}: CustomImageProps) => {
+export const Main = (props: React.ComponentProps<typeof Image>) => {
   return (
-    <CenteredBox className={`custom-image-container ${className}`}>
-      {fill ? (
-        <Image
-          src={src}
-          alt={alt}
-          fill={fill}
-          priority={priority}
-          style={{
-            objectFit: 'cover', // 親要素全体を埋める（必要に応じて `contain` に変更）
-            ...styles,
-          }}
-        />
-      ) : (
-        <Image
-          src={src}
-          alt={alt}
-          width={width}
-          height={height}
-          priority={priority}
-          style={{
-            objectFit: 'contain', // アスペクト比を維持して親要素内に収める
-            width: '100%', // 親要素の幅に応じてスケーリング
-            height: 'auto', // アスペクト比を維持
-            maxHeight: '100%', // 親要素の高さに応じてスケーリング
-            ...styles,
-          }}
-        />
-      )}
-    </CenteredBox>
+    <Image
+      {...props}
+      alt={props.alt || ''}
+      style={{ maxWidth: '100%', height: 'auto', ...props.style }} // `maxWidth` 適用
+    />
   );
 };
 
@@ -95,12 +50,7 @@ export const Logo = () => {
       href="/"
       style={{ display: 'block', maxHeight: '64px', maxWidth: '200px' }}
     >
-      <CustomImage
-        src="/logo.svg"
-        alt="addonem llc. logo"
-        width={200}
-        height={64}
-      />
+      <Main src="/logo.svg" alt="addonem llc. logo" width={200} height={64} />
     </Link>
   );
 };
@@ -141,8 +91,6 @@ export const MediaImage = ({
       className={`ttnoumap-media-container ${className}`}
       sx={{
         position: 'relative',
-        width: width || '100%',
-        height: height || '100%',
         maxWidth: '100%',
         maxHeight: '100%',
         overflow: 'hidden',
@@ -153,6 +101,8 @@ export const MediaImage = ({
         <Image
           src={media.url}
           alt={media.name}
+          width={width}
+          height={height}
           fill={fill}
           priority={priority}
           style={{
@@ -214,13 +164,9 @@ export const AnimationMediaImage = ({
 
 interface MediaImagesProps {
   medias: tMedia[];
-  width?: tGridSize | number;
-  height?: tGridSize | number;
-  priority?: boolean;
   containerStyle?: React.CSSProperties;
-  imageStyle?: React.CSSProperties;
+  imgProps: Omit<React.ComponentProps<typeof Image>, 'src' | 'alt'>;
 }
-
 /**
  * selectViewによる切り替え対応Imageコンポーネント
  * @param param0
@@ -228,51 +174,35 @@ interface MediaImagesProps {
  */
 export const MediaImages: React.FC<MediaImagesProps> = ({
   medias,
-  width,
-  height,
-  priority = false,
-  containerStyle = {},
-  imageStyle = {},
+  containerStyle,
+  imgProps,
 }) => {
   const { selectView } = useContext(CommonDataContext);
+
   return (
-    <CenteredBox
-      className={`ttnoumap-media-container`}
-      sx={{
+    <div
+      className="ttnoumap-media-container"
+      style={{
+        width: '100%',
+        margin: '0 auto',
         position: 'relative',
-        width: width || '100%',
-        height: height || '100%',
-        maxWidth: '100%',
-        maxHeight: '100%',
-        overflow: 'hidden',
         ...containerStyle,
       }}
     >
       {medias.map((media, index) => (
-        <Box
+        <Main
           key={index}
-          className={`${selectView !== index ? 'hidden' : ''}`}
-          sx={{
-            position: 'absolute',
-            width: width || '100%',
-            height: height || '100%',
-            display: 'flex', // 画像を中央揃え
-            justifyContent: 'center',
-            alignItems: 'center',
+          {...imgProps}
+          src={media.url}
+          alt={media.name || ''}
+          style={{
+            maxWidth: '100%',
+            height: 'auto',
+            display: selectView === index ? 'block' : 'none',
+            ...imgProps.style,
           }}
-        >
-          <Image
-            src={media.url}
-            alt={media.caption}
-            fill
-            style={{
-              objectFit: 'contain', // アスペクト比を維持して親要素内に収める
-              ...imageStyle,
-            }}
-            priority={priority}
-          />
-        </Box>
+        />
       ))}
-    </CenteredBox>
+    </div>
   );
 };

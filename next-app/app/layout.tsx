@@ -6,6 +6,7 @@ import { Suspense } from 'react';
 import { tContentImg1, tLink } from '@ctypes/index';
 import { tCompany, tContactFormItem, tMedia } from '@ctypes/map';
 import { CommonDataProvider } from '@contexts/Common';
+import * as Image from '@atoms/Image';
 import { Box, Grid2 as Grid } from '@mui/material';
 import './globals.css';
 
@@ -21,8 +22,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
-      <body>
-        <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<div>Loading...</div>}>
+        <body>
           <CommonDataProvider
             domain={domain}
             imgTenpo={imgTenpo}
@@ -36,8 +37,8 @@ export default function RootLayout({
               <Body>{children}</Body>
             </BaseThemeProvider>
           </CommonDataProvider>
-        </Suspense>
-      </body>
+        </body>
+      </Suspense>
     </html>
   );
 }
@@ -46,90 +47,121 @@ const Body = ({ children }: { children: React.ReactNode }) => {
   return (
     <Grid
       container
-      spacing={0}
-      sx={{ height: '100vh' }}
-      overflow={{ xs: 'auto', md: 'hidden' }}
+      size={{ xs: 12 }}
+      sx={{
+        flexGrow: 1,
+        display: 'flex',
+      }}
+      gap={0}
+      overflow={{ xs: 'hidden', md: 'auto' }}
+      height={{ xs: 'unset', md: '100vh', lg: '100vh' }}
     >
-      {/* === PC: 3列 (Header / Main / Footer) === */}
-      {/* === タブレット: 2列 ([Header] / [Main + Footer]) === */}
-      {/* === スマホ: 1列 (Header 固定 + Main + Footer) === */}
-
+      {/* Header (PCでは 3/12, タブレットでは 4/12, スマホでは横幅100%) */}
       <Grid
-        container
-        size={{ xs: 12 }}
+        component={'header'}
+        size={{ xs: 12, md: 4, lg: 3, xl: 2 }}
         sx={{
-          flexGrow: 1,
+          //bgcolor: 'primary.main',
+          //color: 'white',
+          //p: 2,
+          //minHeight: '100%',
           display: 'flex',
-          flexDirection: { xs: 'column', md: 'row', lg: 'row' },
+          position: { xs: 'sticky', md: 'sticky', lg: 'sticky' }, // スマホでは固定
+          top: 0,
+          zIndex: 1000,
         }}
-        justifyContent={{ xs: 'center', md: 'space-evenly' }}
-        alignItems={{ xs: 'center', md: 'stretch', lg: 'stretch' }}
-        overflow={{ xs: 'auto', md: 'hidden' }}
-        height={{ xs: 'unset', md: '100vh', lg: '100vh' }}
+        overflow={{ xs: 'hidden', md: 'auto' }} // はみ出たらスクロール
+        height={{ xs: '60px', md: '100%', lg: '100%' }}
       >
-        {/* Header (PCでは 3/12, タブレットでは 4/12, スマホでは横幅100%) */}
-        <Grid
-          component={'header'}
-          size={{ xs: 12, md: 4, lg: 4 }}
-          sx={{
-            //bgcolor: 'primary.main',
-            //color: 'white',
-            //p: 2,
-            //minHeight: '100%',
-            position: { xs: 'sticky', md: 'relative', lg: 'relative' }, // スマホでは固定
-            top: 0,
-            zIndex: 1000,
-          }}
-          overflow={{ xs: 'hidden', md: 'auto' }} // はみ出たらスクロール
-          height={{ xs: '60px', md: '100%', lg: '100%' }}
-        >
-          <Header sns={snsLinks} />
-        </Grid>
+        <Header sns={snsLinks} />
+      </Grid>
 
-        {/* Main + Footer のラップ (タブレット・スマホでは1つのスクロール領域にする) */}
+      {/* Main */}
+      <Grid
+        size={{ xs: 12, md: 8, lg: 5, xl: 4 }}
+        sx={{
+          //p: 2,
+          //minHeight: '100%',
+          alignItems: 'flex-start',
+          overflowY: { xs: 'unset', md: 'auto' }, // PCでは各列スクロール, タブレット・スマホではまとめてスクロール
+        }}
+        component="main"
+      >
         <Box
           sx={{
-            display: 'flex',
-            flexDirection: { xs: 'column', md: 'column', xl: 'row' },
-            flexGrow: 1,
-            overflowY: { xs: 'unset', sm: 'auto', xl: 'hidden' }, // PCでは各列スクロール, タブレット・スマホではまとめてスクロール
-            marginTop: { xs: '0', md: 0, lg: 0 }, // スマホで Header がかぶらないように
-            height: { xs: 'unset', md: '100%' },
-            alignItems: { xs: 'center', md: 'center', xl: 'stretch' },
-            width: { xs: '100%', md: 'unset' },
-            maxWidth: { xs: '900px', xl: '100%' },
+            width: '100%',
+            maxWidth: { xs: '680px' },
           }}
         >
-          {/* Main */}
-          <Grid
-            size={{ xs: 12, md: 12, xl: 6 }}
-            sx={{
-              width: '100%',
-              maxWidth: '900px',
-              //p: 2,
-              //minHeight: '100%',
-              overflowY: { xs: 'unset', xl: 'auto' }, // PCでは各列スクロール, タブレット・スマホではまとめてスクロール
-            }}
-            component="main"
-          >
-            {children}
-          </Grid>
-
-          {/* Footer */}
-          <Grid
-            size={{ xs: 12, md: 12, xl: 6 }}
-            sx={{
-              bgcolor: 'grey.800',
-              color: 'white',
-              p: 2,
-              overflowY: { xs: 'unset', xl: 'auto' }, // PCでは各列スクロール, タブレット・スマホではまとめてスクロール
-            }}
-          >
-            <Footer companyInfo={domain} imgTenpo={imgTenpo} />
-          </Grid>
+          {children}
+          <Footer
+            companyInfo={domain}
+            imgTenpo={imgTenpo}
+            items={footerTableItems}
+          />
         </Box>
       </Grid>
+      <Grid
+        size={{ xs: 0, md: 0, lg: 4, xl: 6 }}
+        sx={{
+          position: 'sticky',
+          top: 0,
+          height: '100vh',
+          color: 'white',
+        }}
+      >
+        <FreeSpace />
+      </Grid>
     </Grid>
+  );
+};
+
+const FreeSpace = () => {
+  const imgWidth = 150;
+  const imgHeight = 150;
+
+  const positionY = [10, 150, 280, 410, 540, 670, 740, 990, 1220];
+  const positionX = [10, 400, 250, 0, 200, 10, 450, 300, 600];
+
+  const imgs = [null, null, null, null, null, null, null, null, null];
+
+  return (
+    <>
+      {imgs.map((img, i) => (
+        <Box
+          key={i}
+          style={{
+            position: 'absolute',
+            top: positionY[i],
+            left: positionX[i],
+          }}
+        >
+          {img && (
+            <Image.Main
+              src={img}
+              alt="uzumaki.png"
+              width={imgWidth}
+              height={imgHeight}
+              style={{
+                position: 'absolute',
+              }}
+            />
+          )}
+          <Image.Main
+            style={{
+              position: 'relative',
+              top: 23,
+              left: 20,
+              zIndex: -1,
+            }}
+            src="/ttnou/tmp/uzumaki.png"
+            alt="uzumaki.png"
+            width={imgWidth}
+            height={imgHeight}
+          />
+        </Box>
+      ))}
+    </>
   );
 };
 
@@ -137,14 +169,14 @@ const Body = ({ children }: { children: React.ReactNode }) => {
 const domain: tCompany = {
   number: '1234567890',
   domain: 'example.com',
-  organization_name: 'My Awesome Website',
-  ceo_name: 'John Doe',
-  ceo_post_name: 'CEO',
+  organization_name: `海鮮居酒屋 K's食堂`,
+  ceo_name: '',
+  ceo_post_name: '',
   tell: '012-3456-7890',
   fax: '012-3456-7890',
   postal_code: '123-4567',
-  address: 'Tokyo',
-  address_other: 'Shibuya',
+  address: '京都府京都市中央区西町1-2-3',
+  address_other: '開運ビル1F',
   email: '',
   google_map: '',
   google_map_link: '',
@@ -158,10 +190,10 @@ const snsLinks: tLink[] = [
     name: 'Facebook',
     url: 'https://line.com',
     icon: {
-      url: '/ttnou/tmp/logo_facebook_white.png',
-      file: 'logo_facebook_white.png',
-      name: 'facebook',
-      caption: 'facebook',
+      url: '/ttnou/tmp/Facebook.png',
+      file: 'Facebook.png',
+      name: 'Facebook',
+      caption: 'Facebook',
       uuid: 'jsladjlsadsfd',
     },
   },
@@ -169,11 +201,22 @@ const snsLinks: tLink[] = [
     name: 'Instagram',
     url: 'https://www.instagram.com',
     icon: {
-      url: '/img/sns/logo_instagram_white.png',
-      file: 'logo_instagram_white.png',
+      url: '/ttnou/tmp/instagram.svg',
+      file: 'instagram.svg',
       name: 'instagram',
       caption: 'Instagram',
       uuid: 'dhsalfjdlskajfld;',
+    },
+  },
+  {
+    name: 'LINE',
+    url: 'https://www.instagram.com',
+    icon: {
+      url: '/ttnou/tmp/line.svg',
+      file: 'instlineagram.svg',
+      name: 'line',
+      caption: 'line',
+      uuid: 'fdzgdsar;',
     },
   },
 ];
@@ -277,5 +320,31 @@ const imgTenpo: tMedia[] = [
     name: 'image_tenpo',
     caption: 'image_tenpo',
     uuid: 'dhakhdwljj',
+  },
+];
+
+const footerTableItems = [
+  { label: '予約', value: '予約可能（ネット予約/電話番号）' },
+  {
+    label: '営業時間',
+    value: `
+      <li class="list-style-none">平日：11:30~14:00、18:00〜22:00</li>
+      <li class="list-style-none">土日祝：18:00~22:00</li>
+      `,
+  },
+  { label: '定休日', value: '月曜日' },
+  {
+    label: '支払い',
+    value: `<li class="list-style-none">現金、クレジットカード</li>
+      <li class="list-style-none">電子マネー（楽天Edy、QUICPay、ApplePay）</li>
+      <li class="list-style-none">QRコード決済(PayPal、メルペイ)</li>
+      `,
+  },
+  {
+    label: '座席',
+    value: `
+    <li class="list-style-none">カウンター　8席</li>
+    <li class="list-style-none">テーブル　８席</li>
+    <li class="list-style-none">個室　1個</li>`,
   },
 ];

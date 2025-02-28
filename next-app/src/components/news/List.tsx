@@ -1,6 +1,6 @@
 import { Box, Grid2 as Grid, Typography } from '@mui/material';
 import NewsThemeProvider from '@themes/NewsTheme';
-import { CustomImage } from '@atoms/Image';
+import * as Image from '@atoms/Image';
 import { FlexColumnBox } from '@atoms/Box';
 
 export const list = () => {
@@ -54,7 +54,7 @@ export const list = () => {
               size={{ xs: 0, xl: 5 }}
               sx={{ display: { xs: 'none', xl: 'block' } }}
             >
-              <CustomImage
+              <Image.Main
                 src="/tmp/news1.jpg"
                 alt="news1"
                 width={1920}
