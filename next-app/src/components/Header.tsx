@@ -2,11 +2,11 @@ import React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Box from '@mui/material/Box';
-import HeaderThemeProvider from 'src/themes/HeaderTheme';
-import { LinkBox } from 'src/atoms/Link';
-import * as Image from 'src/atoms/Image';
-import MenuBtn, { MenuForm } from 'src/components/modal/Menu';
-import { FlexBox } from 'src/atoms/Box';
+import HeaderThemeProvider from '@/themes/HeaderTheme';
+import { LinkBox } from '@/atoms/Link';
+import * as Image from '@/atoms/Image';
+import MenuBtn, { MenuForm } from '@/components/modal/Menu';
+import { FlexBox } from '@/atoms/Box';
 import { tLink } from '@ctypes/index';
 
 interface HeaderProps {

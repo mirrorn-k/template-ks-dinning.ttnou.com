@@ -1,4 +1,4 @@
-import { tCatchcopy } from 'src/types';
+import { tCatchcopy } from '@/types';
 import { tCompany } from '@ctypes/map';
 
 export const initCompanyInfo: tCompany = {

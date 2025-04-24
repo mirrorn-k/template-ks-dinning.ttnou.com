@@ -3,7 +3,7 @@ import { createContext, useState, useEffect, ReactNode } from 'react';
 import { tCompany } from '@ctypes/map';
 import { tCatchcopy, tLink, tContentImg1 } from '@ctypes/index';
 import { tContactFormItem, tMedia } from '@ctypes/map';
-import { initCompanyInfo } from 'src/consts/default';
+import { initCompanyInfo } from '@/consts/default';
 
 interface CommonDataContextProps {
   flgChange: (no?: number) => void;

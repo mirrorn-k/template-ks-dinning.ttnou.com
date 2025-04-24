@@ -1,15 +1,15 @@
 'use client';
 import React, { useEffect } from 'react';
-import Modal from 'src/atoms/Modal';
-import { CommonDataContext } from 'src/contexts/Common';
+import Modal from '@/atoms/Modal';
+import { CommonDataContext } from '@/contexts/Common';
 import Grid from '@mui/material/Grid2';
 import { useTheme } from '@mui/material/styles';
-import { SmallTextField } from 'src/atoms/TextField';
+import { SmallTextField } from '@/atoms/TextField';
 import { tValue } from '@ctypes/index';
-import * as atomBtn from 'src/atoms/Button';
-import * as Image from 'src/atoms/Image';
+import * as atomBtn from '@/atoms/Button';
+import * as Image from '@/atoms/Image';
 import { useSearchParams } from 'next/navigation';
-import { FlexBox } from 'src/atoms/Box';
+import { FlexBox } from '@/atoms/Box';
 import { Typography } from '@mui/material';
 
 /**

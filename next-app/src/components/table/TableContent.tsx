@@ -1,4 +1,4 @@
-import { tTableContent } from 'src/types';
+import { tTableContent } from '@/types';
 import {
   Table,
   TableBody,
@@ -9,7 +9,7 @@ import {
   Typography,
 } from '@mui/material';
 import { grey } from '@mui/material/colors';
-import { useIsMobile } from 'src/functions/common/flgDevice';
+import { useIsMobile } from '@/functions/common/flgDevice';
 
 interface MainProps {
   table: tTableContent;

@@ -1,7 +1,7 @@
 import { Box, Grid2 as Grid, Typography } from '@mui/material';
-import NewsThemeProvider from 'src/themes/NewsTheme';
-import * as Image from 'src/atoms/Image';
-import { FlexColumnBox } from 'src/atoms/Box';
+import NewsThemeProvider from '@/themes/NewsTheme';
+import * as Image from '@/atoms/Image';
+import { FlexColumnBox } from '@/atoms/Box';
 
 export const list = () => {
   return (

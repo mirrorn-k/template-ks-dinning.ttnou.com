@@ -2,7 +2,7 @@
 import MuiLink from '@mui/material/Link';
 import Link from 'next/link';
 import { Typography, Box } from '@mui/material';
-import ArrowIcon from 'src/atoms/svg/ArrowIcon';
+import ArrowIcon from '@/atoms/svg/ArrowIcon';
 import { useTheme } from '@mui/material';
 import styled from '@mui/system/styled';
 import { FlexBox } from './Box';

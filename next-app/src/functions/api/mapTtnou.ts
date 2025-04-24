@@ -1,6 +1,6 @@
 'use client';
-import { create } from 'src/functions/common/axios';
-import { makeUrl } from 'src/functions/common/index';
+import { create } from '@/functions/common/axios';
+import { makeUrl } from '@/functions/common/index';
 
 // .env未設定の場合は空文字にする
 //const domain = process.env.TTNOU_DOMAIN || "";

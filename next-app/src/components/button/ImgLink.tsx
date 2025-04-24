@@ -1,6 +1,6 @@
-import * as Image from 'src/atoms/Image';
+import * as Image from '@/atoms/Image';
 import Link from 'next/link';
-import { CommonDataContext } from 'src/contexts/Common';
+import { CommonDataContext } from '@/contexts/Common';
 import { useContext } from 'react';
 import { tLink } from '@ctypes/index';
 

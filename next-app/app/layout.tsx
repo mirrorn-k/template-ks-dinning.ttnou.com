@@ -1,12 +1,12 @@
 import type { Metadata } from 'next';
-import BaseThemeProvider from 'src/themes/BaseTheme';
-import Header from 'src/components/Header';
-import Footer from 'src/components/Footer';
+import BaseThemeProvider from '@/themes/BaseTheme';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 import { Suspense } from 'react';
 import { tContentImg1, tLink } from '@ctypes/index';
 import { tCompany, tContactFormItem, tMedia } from '@ctypes/map';
-import { CommonDataProvider } from 'src/contexts/Common';
-import * as Image from 'src/atoms/Image';
+import { CommonDataProvider } from '@/contexts/Common';
+import * as Image from '@/atoms/Image';
 import { Box, Grid2 as Grid } from '@mui/material';
 import './globals.css';
 

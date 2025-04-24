@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@mui/material/styles/styled';
 import { Grid2 as Grid, Typography } from '@mui/material';
-import { tTableClm2 } from 'src/types';
+import { tTableClm2 } from '@/types';
 
 // 親Gridコンテナのカスタムスタイル
 const GridContainer = styled(Grid)(({ theme }) => ({
