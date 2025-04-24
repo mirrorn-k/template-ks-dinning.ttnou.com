@@ -1,8 +1,8 @@
 'use client';
 import { useContext, useEffect } from 'react';
-import { CommonDataContext } from '@contexts/Common';
-import { CircularButton } from '@atoms/Button';
-import * as Image from '@atoms/Image';
+import { CommonDataContext } from 'src/contexts/Common';
+import { CircularButton } from 'src/atoms/Button';
+import * as Image from 'src/atoms/Image';
 import { useSearchParams } from 'next/navigation';
 
 const Main = () => {

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Typography } from '@mui/material';
-import { tTableClm2 } from '@/types';
+import { tTableClm2 } from 'src/types';
 import { grey } from '@mui/material/colors';
-import { FlexColumnBox } from '@atoms/Box';
+import { FlexColumnBox } from 'src/atoms/Box';
 
 interface MainProps {
   items: tTableClm2[];

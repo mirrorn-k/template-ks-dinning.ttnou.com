@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { baseTheme } from '@themes/BaseTheme';
+import { baseTheme } from 'src/themes/BaseTheme';
 import {
   createTheme,
   ThemeProvider,

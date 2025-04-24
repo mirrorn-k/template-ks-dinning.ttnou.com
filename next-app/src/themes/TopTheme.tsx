@@ -1,14 +1,14 @@
-'use client'
-import React from 'react'
-import { baseTheme } from '@themes/BaseTheme'
+'use client';
+import React from 'react';
+import { baseTheme } from 'src/themes/BaseTheme';
 import {
   createTheme,
   ThemeProvider,
   responsiveFontSizes,
-} from '@mui/material/styles'
-import { CssBaseline } from '@mui/material'
-import deepmerge from 'deepmerge'
-// import color from "@consts/color";
+} from '@mui/material/styles';
+import { CssBaseline } from '@mui/material';
+import deepmerge from 'deepmerge';
+// import color from "src/consts/color";
 
 let theme = createTheme(
   deepmerge(baseTheme, {
@@ -61,12 +61,12 @@ let theme = createTheme(
       },
     },
   })
-)
+);
 
-theme = responsiveFontSizes(theme)
+theme = responsiveFontSizes(theme);
 
 interface ThemeProps {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 const TopThemeProvider: React.FC<ThemeProps> = ({ children }) => {
@@ -75,7 +75,7 @@ const TopThemeProvider: React.FC<ThemeProps> = ({ children }) => {
       <CssBaseline />
       {children}
     </ThemeProvider>
-  )
-}
+  );
+};
 
-export default TopThemeProvider
+export default TopThemeProvider;

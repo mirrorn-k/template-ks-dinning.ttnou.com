@@ -1,5 +1,5 @@
 import { Typography } from '@mui/material';
-import ClientOnly from '@atoms/ClientOnly';
+import ClientOnly from 'src/atoms/ClientOnly';
 
 const HtmlTypography = ({
   text,

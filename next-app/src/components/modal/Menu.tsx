@@ -1,15 +1,15 @@
 'use client';
-import Modal from '@atoms/Modal';
+import Modal from 'src/atoms/Modal';
 import { useContext } from 'react';
-import { CommonDataContext } from '@contexts/Common';
+import { CommonDataContext } from 'src/contexts/Common';
 import IconButton from '@mui/material/IconButton';
 import { useState } from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Typography } from '@mui/material';
-import { FlexColumnBox, FlexBox } from '@atoms/Box';
+import { FlexColumnBox, FlexBox } from 'src/atoms/Box';
 import { useTheme } from '@mui/material/styles';
-import * as Link from '@atoms/Link';
-import * as ImgLink from '@components/button/ImgLink';
+import * as Link from 'src/atoms/Link';
+import * as ImgLink from 'src/components/button/ImgLink';
 
 const Main = () => {
   const [open, setOpen] = useState(false);

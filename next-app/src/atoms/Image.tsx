@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import { tMedia } from '@ctypes/map';
-import { CenteredBox } from '@atoms/Box';
+import { CenteredBox } from 'src/atoms/Box';
 import { useContext } from 'react';
-import { CommonDataContext } from '@contexts/Common';
+import { CommonDataContext } from 'src/contexts/Common';
 import Link from 'next/link';
 
 export const Main = (props: React.ComponentProps<typeof Image>) => {

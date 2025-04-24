@@ -1,6 +1,6 @@
 import React from 'react';
 import { Typography } from '@mui/material';
-import { FlexBox } from '@atoms/Box';
+import { FlexBox } from 'src/atoms/Box';
 
 const Main = ({ tags }: { tags: string[] }) => {
   return (

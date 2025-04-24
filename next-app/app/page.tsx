@@ -1,15 +1,15 @@
 'use client';
-import * as Image from '@atoms/Image';
+import * as Image from 'src/atoms/Image';
 import Box from '@mui/material/Box';
 import { useTheme } from '@mui/material/styles';
 import { Typography } from '@mui/material';
-import HtmlTypography from '@components/HtmlTypography';
-import ResponsiveBox, { FlexColumnBox } from '@/atoms/Box';
-import * as typeMenu from '@/types/menu';
-import { isOdd } from '@functions/common/index';
-import Carousel from '@components/slider/Carousel';
-import { tSeat } from '@/types/index';
-import { useIsMobile } from '@functions/common/flgDevice';
+import HtmlTypography from 'src/components/HtmlTypography';
+import ResponsiveBox, { FlexColumnBox } from 'src/atoms/Box';
+import * as typeMenu from 'src/types/menu';
+import { isOdd } from 'src/functions/common/index';
+import Carousel from 'src/components/slider/Carousel';
+import { tSeat } from 'src/types/index';
+import { useIsMobile } from 'src/functions/common/flgDevice';
 
 export default function Main() {
   return (

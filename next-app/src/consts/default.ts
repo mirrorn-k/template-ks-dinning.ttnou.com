@@ -1,5 +1,5 @@
-import { tCatchcopy } from '@/types'
-import { tCompany } from '@ctypes/map'
+import { tCatchcopy } from 'src/types';
+import { tCompany } from '@ctypes/map';
 
 export const initCompanyInfo: tCompany = {
   number: '',
@@ -18,7 +18,7 @@ export const initCompanyInfo: tCompany = {
   google_tm_script: '',
   google_tm_script_body: '',
   caption: '',
-}
+};
 
 export const initMedia = {
   url: '',
@@ -26,18 +26,18 @@ export const initMedia = {
   caption: '',
   file: '',
   uuid: '',
-}
+};
 
 export const initCatchcopy: tCatchcopy = {
   title: '',
   description: '',
   image: initMedia,
   tags: [],
-}
+};
 
 export const initContent = {
   title: '',
   description: '',
   image: initMedia,
   href: '',
-}
+};

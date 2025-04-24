@@ -1,5 +1,5 @@
 import { Typography } from '@mui/material';
-import ResponsiveBox from '@atoms/Box';
+import ResponsiveBox from 'src/atoms/Box';
 import { grey } from '@mui/material/colors';
 
 const ContentWarpper = ({

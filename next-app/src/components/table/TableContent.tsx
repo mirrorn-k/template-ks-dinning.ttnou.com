@@ -1,4 +1,4 @@
-import { tTableContent } from '@/types'
+import { tTableContent } from 'src/types';
 import {
   Table,
   TableBody,
@@ -7,15 +7,15 @@ import {
   TableHead,
   TableRow,
   Typography,
-} from '@mui/material'
-import { grey } from '@mui/material/colors'
-import { useIsMobile } from '@functions/common/flgDevice'
+} from '@mui/material';
+import { grey } from '@mui/material/colors';
+import { useIsMobile } from 'src/functions/common/flgDevice';
 
 interface MainProps {
-  table: tTableContent
+  table: tTableContent;
 }
 export default function Main({ table }: MainProps) {
-  const flg = useIsMobile()
+  const flg = useIsMobile();
   return (
     <>
       <Typography
@@ -28,17 +28,17 @@ export default function Main({ table }: MainProps) {
       </Typography>
       {flg ? <ContentUnder table={table} /> : <ContentOver table={table} />}
     </>
-  )
+  );
 }
 
 function ContentOver({ table }: MainProps) {
   // 1. カラム（サイトの種類）を取得
-  const headClms = Object.keys(table.value)
+  const headClms = Object.keys(table.value);
 
   // 2. 行ヘッダー（各項目）を取得
   const headRows = [
     ...new Set(headClms.flatMap((key) => Object.keys(table.value[key]))),
-  ]
+  ];
 
   return (
     <TableContainer>
@@ -71,18 +71,18 @@ function ContentOver({ table }: MainProps) {
         </TableBody>
       </Table>
     </TableContainer>
-  )
+  );
 }
 
 function ContentUnder({ table }: MainProps) {
   // 1. 行ヘッダー（サイトの種類）を新しい行として取得
-  const newHeadRows = Object.keys(table.value)
+  const newHeadRows = Object.keys(table.value);
 
   // 2. 列ヘッダー（元の行ヘッダー）を新しいカラムとして取得
   const newHeadClms = [
     '', // 空セル (元のカラムヘッダー)
     ...new Set(newHeadRows.flatMap((key) => Object.keys(table.value[key]))),
-  ]
+  ];
 
   return (
     <TableContainer sx={{ overflowX: 'auto' }}>
@@ -115,5 +115,5 @@ function ContentUnder({ table }: MainProps) {
         </TableBody>
       </Table>
     </TableContainer>
-  )
+  );
 }

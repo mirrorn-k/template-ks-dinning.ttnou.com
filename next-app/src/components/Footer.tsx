@@ -1,15 +1,15 @@
 'use client';
 import React from 'react';
-import ResponsiveBox, { FlexColumnBox } from '@atoms/Box';
+import ResponsiveBox, { FlexColumnBox } from 'src/atoms/Box';
 import { Typography, Box } from '@mui/material';
-import FooterThemeProvider from '@themes/FooterTheme';
-import { FlexBox } from '@atoms/Box';
-import * as Image from '@atoms/Image';
-import { tCompany, tMedia } from '@/types/map';
-import * as Link from '@atoms/Link';
+import FooterThemeProvider from 'src/themes/FooterTheme';
+import { FlexBox } from 'src/atoms/Box';
+import * as Image from 'src/atoms/Image';
+import { tCompany, tMedia } from 'src/types/map';
+import * as Link from 'src/atoms/Link';
 import { Grid } from '@mui/system';
 
-import HtmlTypography from '@components/HtmlTypography';
+import HtmlTypography from 'src/components/HtmlTypography';
 
 interface FooterProps {
   companyInfo: tCompany;

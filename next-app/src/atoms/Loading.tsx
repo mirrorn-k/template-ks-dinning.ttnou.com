@@ -1,5 +1,5 @@
-import { Box, CircularProgress } from '@mui/material'
-import Modal from '@atoms/Modal'
+import { Box, CircularProgress } from '@mui/material';
+import Modal from 'src/atoms/Modal';
 
 const Main = ({ flg = true }: { flg?: boolean }) => {
   return flg ? (
@@ -26,7 +26,7 @@ const Main = ({ flg = true }: { flg?: boolean }) => {
     </Box>
   ) : (
     <></>
-  )
-}
+  );
+};
 
-export default Main
+export default Main;

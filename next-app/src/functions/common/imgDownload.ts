@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { URL } from 'url';
-import log from '@functions/common/logger';
+import log from 'src/functions/common/logger';
 
 export async function downloadImage(
   imageUrl: string,
