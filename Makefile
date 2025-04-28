@@ -1,52 +1,83 @@
-setup:
-	docker compose run --rm app sh -c "npm install"
-	docker compose build --no-cache
-	docker compose run --rm app sh -c "npm run build"
-	docker compose up
-
+# ========== 開発環境 ==========
 build:
-	docker compose build
-	docker compose run --rm app sh -c "npm run build"
-	
-build-no-cache:
-	docker compose build --no-cache
-	docker compose run --rm app sh -c "npm run build"
-	
-npm-start:
-	docker compose build --no-cache
-	docker compose run --rm app sh -c "npm run build"
-	docker compose run --rm app sh -c "npm run start"
-	
+	docker compose build --parallel
+
 up:
 	docker compose up
 
 upd:
+	docker compose build --parallel
 	docker compose up -d
 
 down:
 	docker compose down
-	
+
+stop:
+	docker compose stop
+
+restart:
+	docker compose restart
+
+setup:
+	docker compose run --rm --entrypoint sh app -c "npm install"
+	docker compose build --parallel
+	docker compose up
+
 re-start:
 	docker compose down
-	docker compose run --rm app sh -c "npm run build"
-	docker compose up -d
-	
-login:
-	docker compose exec app sh
+	docker compose build --parallel
+	docker compose up
 
-install: 
-	docker compose run --rm app sh -c "npm install"
-
-npm-dev: 
-	docker compose run --rm app sh -c "npm run dev"
-
-npm-build: 
-	docker compose run --rm app sh -c "npm run build"
-
-git-all-push:
-	git add -A
-	git commit -m "make git-all-push"
-	git push origin main
-	
 cache-clear:
-	docker compose run --rm app sh -c "npm cache clean --force"
+	docker compose down --volumes --rmi all --remove-orphans
+
+login:
+	docker compose run --rm app sh
+
+ps:
+	docker compose ps
+
+logs:
+	docker compose logs -f
+
+# ========== 本番環境（override無視） ==========
+prod-build:
+	docker compose -f docker-compose.yml build --parallel
+
+prod-up:
+	docker compose -f docker-compose.yml up
+
+prod-upd:
+	docker compose -f docker-compose.yml build --parallel
+	docker compose -f docker-compose.yml up -d
+
+prod-down:
+	docker compose -f docker-compose.yml down
+
+prod-stop:
+	docker compose -f docker-compose.yml stop
+
+prod-restart:
+	docker compose -f docker-compose.yml restart
+
+prod-setup:
+	docker compose -f docker-compose.yml run --rm --entrypoint sh app -c "npm install"
+	docker compose -f docker-compose.yml build --parallel
+#	docker compose -f docker-compose.yml up
+
+prod-re-start:
+	docker compose -f docker-compose.yml down
+	docker compose -f docker-compose.yml build --parallel
+	docker compose -f docker-compose.yml up
+
+prod-cache-clear:
+	docker compose -f docker-compose.yml down --volumes --rmi all --remove-orphans
+
+prod-login:
+	docker compose -f docker-compose.yml run --rm app sh
+
+prod-ps:
+	docker compose -f docker-compose.yml ps
+
+prod-logs:
+	docker compose -f docker-compose.yml logs -f

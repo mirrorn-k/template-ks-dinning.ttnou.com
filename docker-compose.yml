@@ -1,14 +1,14 @@
 version: "3.8"
+
 services:
   app:
     build: .
     ports:
-      - "${APP_PORT}:3000"
+      - "8257:3000"
     environment:
-      - NODE_ENV=${NODE_ENV}
+      NODE_ENV: ${NODE_ENV:-production}
     volumes:
       - ./next-app:/next-app
     env_file:
       - .env
-    command: >
-      sh -c "if [ \"$NODE_ENV\" = \"production\" ]; then npm run start; else npm run dev; fi"
+    command: sh -c "npm run build && npm run start"
